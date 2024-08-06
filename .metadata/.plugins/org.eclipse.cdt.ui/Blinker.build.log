@@ -1,0 +1,86 @@
+13:02:04 **** Incremental Build of configuration Debug for project Blinker ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c:48:1: error: unknown type name 'TIM_HandleTypeDef'; did you mean 'PCD_HandleTypeDef'?
+   48 | TIM_HandleTypeDef htim_durukan; // kendi yazdığım timer yapım
+      | ^~~~~~~~~~~~~~~~~
+      | PCD_HandleTypeDef
+../Core/Src/main.c: In function 'MX_TIM_Durukan_Init':
+../Core/Src/main.c:66:3: error: unknown type name 'TIM_ClockConfigTypeDef'; did you mean 'EXTI_ConfigTypeDef'?
+   66 |   TIM_ClockConfigTypeDef sClockSourceConfig = {0};
+      |   ^~~~~~~~~~~~~~~~~~~~~~
+      |   EXTI_ConfigTypeDef
+../Core/Src/main.c:67:3: error: unknown type name 'TIM_MasterConfigTypeDef'
+   67 |   TIM_MasterConfigTypeDef sMasterConfig = {0};
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:69:15: error: request for member 'Instance' in something not a structure or union
+   69 |   htim_durukan.Instance = TIM2; // Kullanılacak timer birimi
+      |               ^
+../Core/Src/main.c:70:15: error: request for member 'Init' in something not a structure or union
+   70 |   htim_durukan.Init.Prescaler = 8400 - 1;  // 84 MHz / 8400 = 10 kHz
+      |               ^
+../Core/Src/main.c:71:15: error: request for member 'Init' in something not a structure or union
+   71 |   htim_durukan.Init.CounterMode = TIM_COUNTERMODE_UP;
+      |               ^
+../Core/Src/main.c:71:35: error: 'TIM_COUNTERMODE_UP' undeclared (first use in this function)
+   71 |   htim_durukan.Init.CounterMode = TIM_COUNTERMODE_UP;
+      |                                   ^~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:71:35: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/main.c:72:15: error: request for member 'Init' in something not a structure or union
+   72 |   htim_durukan.Init.Period = 10000 - 1; // 1 Hz (1 saniye)
+      |               ^
+../Core/Src/main.c:73:15: error: request for member 'Init' in something not a structure or union
+   73 |   htim_durukan.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+      |               ^
+../Core/Src/main.c:73:37: error: 'TIM_CLOCKDIVISION_DIV1' undeclared (first use in this function)
+   73 |   htim_durukan.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+      |                                     ^~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:74:15: error: request for member 'Init' in something not a structure or union
+   74 |   htim_durukan.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+      |               ^
+../Core/Src/main.c:74:41: error: 'TIM_AUTORELOAD_PRELOAD_DISABLE' undeclared (first use in this function)
+   74 |   htim_durukan.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+      |                                         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:75:7: warning: implicit declaration of function 'HAL_TIM_Base_Init' [-Wimplicit-function-declaration]
+   75 |   if (HAL_TIM_Base_Init(&htim_durukan) != HAL_OK)
+      |       ^~~~~~~~~~~~~~~~~
+../Core/Src/main.c:79:21: error: request for member 'ClockSource' in something not a structure or union
+   79 |   sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
+      |                     ^
+../Core/Src/main.c:79:36: error: 'TIM_CLOCKSOURCE_INTERNAL' undeclared (first use in this function)
+   79 |   sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
+      |                                    ^~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:80:7: warning: implicit declaration of function 'HAL_TIM_ConfigClockSource' [-Wimplicit-function-declaration]
+   80 |   if (HAL_TIM_ConfigClockSource(&htim_durukan, &sClockSourceConfig) != HAL_OK)
+      |       ^~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:84:16: error: request for member 'MasterOutputTrigger' in something not a structure or union
+   84 |   sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
+      |                ^
+../Core/Src/main.c:84:39: error: 'TIM_TRGO_RESET' undeclared (first use in this function)
+   84 |   sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
+      |                                       ^~~~~~~~~~~~~~
+../Core/Src/main.c:85:16: error: request for member 'MasterSlaveMode' in something not a structure or union
+   85 |   sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
+      |                ^
+../Core/Src/main.c:85:35: error: 'TIM_MASTERSLAVEMODE_DISABLE' undeclared (first use in this function)
+   85 |   sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
+      |                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:86:7: warning: implicit declaration of function 'HAL_TIMEx_MasterConfigSynchronization'; did you mean 'HAL_TIM_SlaveConfigSynchronization'? [-Wimplicit-function-declaration]
+   86 |   if (HAL_TIMEx_MasterConfigSynchronization(&htim_durukan, &sMasterConfig) != HAL_OK)
+      |       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |       HAL_TIM_SlaveConfigSynchronization
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:126:3: warning: implicit declaration of function 'HAL_TIM_Base_Start_IT'; did you mean 'HAL_DMA_Start_IT'? [-Wimplicit-function-declaration]
+  126 |   HAL_TIM_Base_Start_IT(&htim_durukan); // Timer interrupt'ı başlatma
+      |   ^~~~~~~~~~~~~~~~~~~~~
+      |   HAL_DMA_Start_IT
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:310:36: error: unknown type name 'TIM_HandleTypeDef'; did you mean 'PCD_HandleTypeDef'?
+  310 | void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+      |                                    ^~~~~~~~~~~~~~~~~
+      |                                    PCD_HandleTypeDef
+make: *** [Core/Src/subdir.mk:34: Core/Src/main.o] Error 1
+"make -j7 all" terminated with exit code 2. Build might be incomplete.
+
+13:02:05 Build Failed. 20 errors, 4 warnings. (took 514ms)
+

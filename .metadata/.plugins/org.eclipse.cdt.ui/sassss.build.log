@@ -1,0 +1,10 @@
+17:27:17 **** Incremental Build of configuration Debug for project sassss ****
+make -j7 all 
+arm-none-eabi-size  sassss.elf 
+   text	   data	    bss	    dec	    hex	filename
+  12824	     12	   2892	  15728	   3d70	sassss.elf
+Finished building: default.size.stdout
+ 
+
+17:27:17 Build Finished. 0 errors, 0 warnings. (took 163ms)
+

@@ -74,24 +74,28 @@ ASMM_SOURCES =
 
 
 #######################################
-# binaries
+# binaries and OS detection (macOS and Linux )
 #######################################
 PREFIX = arm-none-eabi-
-# The gcc compiler bin path can be either defined in make command via GCC_PATH variable (> make GCC_PATH=xxx)
-# either it can be added to the PATH environment variable.
+OS := $(shell uname)
 ifdef GCC_PATH
+else
+    ifeq ($(OS), Darwin)
+        GCC_PATH = /opt/homebrew/bin
+    else ifeq ($(OS), Linux)
+        GCC_PATH = /usr/bin
+    endif
+endif
+
+# Derleyici ayarları
 CC = $(GCC_PATH)/$(PREFIX)gcc
 AS = $(GCC_PATH)/$(PREFIX)gcc -x assembler-with-cpp
 CP = $(GCC_PATH)/$(PREFIX)objcopy
 SZ = $(GCC_PATH)/$(PREFIX)size
-else
-CC = $(PREFIX)gcc
-AS = $(PREFIX)gcc -x assembler-with-cpp
-CP = $(PREFIX)objcopy
-SZ = $(PREFIX)size
-endif
+
 HEX = $(CP) -O ihex
 BIN = $(CP) -O binary -S
+
  
 #######################################
 # CFLAGS

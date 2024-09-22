@@ -1,0 +1,16 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Clone') {
+            steps {
+                git branch: 'main', url: 'https://github.com/durukanoktay/STM32-projects'
+            }
+        }
+        stage('Build') {
+            steps {
+                sh 'make'  // Eğer bir Makefile kullanıyorsanız
+            }
+        }
+    }
+}
